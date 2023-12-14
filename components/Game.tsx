@@ -7,7 +7,7 @@ import { TryAgainSVG } from "./TryAgainSVG";
 const LIKE_LIMIT = 3;
 
 function Loading() {
-	return <div className="h-10 w-10 animate-spin rounded-full border-4 border-l-gray-500" />;
+	return <div className="h-10 w-10 animate-spin rounded-full border-4 border-l-white" />;
 }
 
 function ErrorIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -127,22 +127,22 @@ function Game({
 
 	return (
 		<div className="relative flex w-full flex-col items-center justify-center">
-			{!error ? null : (
-				<div className="flex flex-col gap-y-2 py-4 text-lg text-red-500">
-					<p className="flex items-center justify-center gap-x-2">
+			<div className="flex flex-col gap-y-2 py-4 text-lg">
+				{!error ? null : (
+					<p className="flex items-center justify-center gap-x-2 text-red-500">
 						<ErrorIcon className="h-6 w-6" />
 						{error}
 					</p>
-					<button
-						className="underline"
-						onClick={() => {
-							reset();
-						}}
-					>
-						Click here to reset
-					</button>
-				</div>
-			)}
+				)}
+				<button
+					className="underline"
+					onClick={() => {
+						reset();
+					}}
+				>
+					Click here to reset
+				</button>
+			</div>
 			<div
 				className={`flex h-full w-full flex-col gap-y-10 transition-all duration-500 ${
 					state !== "playing" ? "opacity-0" : "opacity-100"
@@ -159,11 +159,11 @@ function Game({
 				<Loading />
 			</div>
 
-			<div
+			{/* <div
 				className={`absolute inset-0 flex flex-col items-center justify-center gap-y-4 bg-[#252525] transition-all delay-200 duration-1000 ${
 					state !== "complete" ? "-z-30 opacity-0" : "z-30 opacity-100"
 				}`}
-			/>
+			/> */}
 
 			<div
 				className={`absolute inset-0 flex flex-col items-center justify-center gap-y-4 bg-[#252525] text-[#E8E8E8] transition-all delay-200 duration-1000 ${
@@ -173,16 +173,16 @@ function Game({
 				<div className="max-h-full w-32 max-w-full">
 					<TryAgainSVG className="h-full w-full" />
 				</div>
-				<div className="desktop:mt-8 mt-6 max-w-[357px] text-center">
-					<p className="desktop:hidden flex">
+				<div className="mt-6 max-w-[357px] text-center desktop:mt-8">
+					<p className="flex desktop:hidden">
 						Play again to discover things you might not know about these top 2022 cultural moments.
 					</p>
-					<p className="desktop:flex hidden">
+					<p className="hidden desktop:flex">
 						Sorry that we don&apos;t align on top of the 2022 cultural events. We will be running different topics in
 						the future; please come back and play with us later.
 					</p>
 				</div>
-				<div className="desktop:mt-24 mt-12">
+				<div className="mt-12 desktop:mt-24">
 					<button
 						className="rounded-full bg-white px-14 py-4 text-lg font-black text-black"
 						onClick={(event) => {
